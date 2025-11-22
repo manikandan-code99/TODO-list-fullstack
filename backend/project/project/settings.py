@@ -67,15 +67,23 @@ WSGI_APPLICATION = 'project.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#       'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': config('db_name'),       #  database name you just created
+#         'USER': 'postgres',          # or your pgAdmin username
+#         'PASSWORD': config('pass'),   # password you set or confirmed
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+
+import dj_database_url
+
 DATABASES = {
-    'default': {
-      'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('db_name'),       #  database name you just created
-        'USER': 'postgres',          # or your pgAdmin username
-        'PASSWORD': config('pass'),   # password you set or confirmed
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
 }
 
 
