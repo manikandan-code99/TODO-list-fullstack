@@ -72,7 +72,7 @@ DATABASES = {
       'ENGINE': 'django.db.backends.postgresql',
         'NAME': config('db_name'),       #  database name you just created
         'USER': 'postgres',          # or your pgAdmin username
-        'PASSWORD': '12345',   # password you set or confirmed
+        'PASSWORD': config('pass'),   # password you set or confirmed
         'HOST': 'localhost',
         'PORT': '5432',
     }
