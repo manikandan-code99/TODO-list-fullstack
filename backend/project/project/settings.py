@@ -1,6 +1,7 @@
 
 
 from pathlib import Path
+from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -59,12 +60,24 @@ TEMPLATES = [
 WSGI_APPLICATION = 'project.wsgi.application'
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+      'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('db_name'),       #  database name you just created
+        'USER': 'postgres',          # or your pgAdmin username
+        'PASSWORD': '12345',   # password you set or confirmed
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -111,7 +124,7 @@ SIMPLE_JWT = {
     # 'BLACKLIST_AFTER_ROTATION':True,
 }
 
-CORS_ALLOWED_ORIGINS = ['http://localhost:5173'
-  ]
+# CORS_ALLOWED_ORIGINS = ['http://localhost:5173'
+#   ]
 
-# CORS_ALLOW_ALL_ORIGINS: True
+CORS_ALLOW_ALL_ORIGINS: True
