@@ -79,18 +79,53 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # }
 import os
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.environ.get('SUPABASE_DB_NAME'),
+#         'USER': os.environ.get('SUPABASE_DB_USER'),
+#         'PASSWORD': os.environ.get('SUPABASE_DB_PASSWORD'), 
+#         'HOST': os.environ.get('SUPABASE_DB_HOST'),
+#         'PORT': os.environ.get('SUPABASE_DB_PORT'),
+#         'OPTIONS': {'sslmode': 'require'},
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('SUPABASE_DB_NAME'),
-        'USER': os.environ.get('SUPABASE_DB_USER'),
-        'PASSWORD': os.environ.get('SUPABASE_DB_PASSWORD'), 
-        'HOST': os.environ.get('SUPABASE_DB_HOST'),
-        'PORT': os.environ.get('SUPABASE_DB_PORT'),
+        'NAME': config('SUPABASE_DB_NAME'),
+        'USER': config('SUPABASE_DB_USER'),
+        'PASSWORD': config('SUPABASE_DB_PASSWORD'), 
+        'HOST': config('SUPABASE_DB_HOST'),
+        'PORT': config('SUPABASE_DB_PORT', default='6543'),
         'OPTIONS': {'sslmode': 'require'},
     }
 }
 
+
+
+# Use Supabase in production, SQLite locally
+# if os.environ.get('RENDER'):  # Render sets this env var automatically
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql',
+#             'NAME': os.environ.get('SUPABASE_DB_NAME'),
+#             'USER': os.environ.get('SUPABASE_DB_USER'),
+#             'PASSWORD': os.environ.get('SUPABASE_DB_PASSWORD'), 
+#             'HOST': os.environ.get('SUPABASE_DB_HOST'),
+#             'PORT': os.environ.get('SUPABASE_DB_PORT'),
+#             'OPTIONS': {'sslmode': 'require'},
+#         }
+#     }
+# else:
+#     # Local development - uses SQLite
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': BASE_DIR / 'db.sqlite3',
+#         }
+#     }
 
 
 # import dj_database_url
