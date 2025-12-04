@@ -77,14 +77,29 @@ WSGI_APPLICATION = 'project.wsgi.application'
 #         'PORT': '5432',
 #     }
 # }
-
-import dj_database_url
+import os
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('SUPABASE_DB_NAME', 'postgres'),
+        'USER': os.environ.get('SUPABASE_DB_USER', 'postgres'),
+        'PASSWORD': os.environ.get('SUPABASE_DB_PASSWORD'),  # Use the env variable
+        'HOST': os.environ.get('SUPABASE_DB_HOST', 'db.aqhpyntorynxjftrxuwh.supabase.co'),
+        'PORT': os.environ.get('SUPABASE_DB_PORT', '5432'),
+        'OPTIONS': {'sslmode': 'require'},
+    }
 }
+
+
+
+# import dj_database_url
+
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default=config('DATABASE_URL')
+#     )
+# }
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -126,13 +141,12 @@ REST_FRAMEWORK = {
     ),
 }
 SIMPLE_JWT = {
-    # 'ACCESS_TOKEN_LIFETIME': timedelta(days=2),
-    # 'REFRESH_TOKEN_LIFETIME': timedelta(days=5),
-    # 'ROTATE_REFRESH_TOKENS':True,
-    # 'BLACKLIST_AFTER_ROTATION':True,
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=2),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=5),
+    'ROTATE_REFRESH_TOKENS':True,
+    'BLACKLIST_AFTER_ROTATION':True,
 }
 
-# CORS_ALLOWED_ORIGINS = ['http://localhost:5173'
-#   ]
+CORS_ALLOWED_ORIGINS = ['http://localhost:5173']
 
-CORS_ALLOW_ALL_ORIGINS: True
+# CORS_ALLOW_ALL_ORIGINS: True
