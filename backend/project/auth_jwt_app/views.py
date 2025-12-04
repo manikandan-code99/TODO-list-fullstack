@@ -6,14 +6,32 @@ from django.contrib.auth import authenticate
 from .serializers import CustomToken_Serializers
 
 
-class UserView(APIView):
-    def post(self,request):
-        new_user= User(username=request.data['username'])
+# class UserView(APIView):
+#     def post(self,request):
+#         new_user= User(username=request.data['username'])
 
-        new_user.set_password(request.data['password'])
+#         new_user.set_password(request.data['password'])
+#         new_user.save()
+
+#         return Response('new user creater')
+class UserView(APIView):
+    def post(self, request):
+        username = request.data.get('username')
+        password = request.data.get('password')
+
+        if not username or not password:
+            return Response({"error": "username and password required"}, status=400)
+
+        # Check if username already exists
+        if User.objects.filter(username=username).exists():
+            return Response({"error": "Username already taken"}, status=400)
+
+        new_user = User(username=username)
+        new_user.set_password(password)
         new_user.save()
 
-        return Response('new user creater')
+        return Response({"message": "New user created"}, status=201)
+
     
 class UserLoginView(APIView):
     def post(self,request):
