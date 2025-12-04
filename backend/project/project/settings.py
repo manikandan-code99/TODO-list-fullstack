@@ -147,6 +147,7 @@ SIMPLE_JWT = {
     'BLACKLIST_AFTER_ROTATION':True,
 }
 
-CORS_ALLOWED_ORIGINS = ['http://localhost:5173']
-
+CORS_ALLOWED_ORIGINS = ['http://localhost:5173',
+'https://todo-list-fullstack-sage.vercel.app']
+CORS_ALLOW_CREDENTIALS = True
 # CORS_ALLOW_ALL_ORIGINS: True
