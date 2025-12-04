@@ -186,3 +186,30 @@ CORS_ALLOWED_ORIGINS = ['http://localhost:5173',
 'https://todo-list-fullstack-sage.vercel.app']
 CORS_ALLOW_CREDENTIALS = True
 # CORS_ALLOW_ALL_ORIGINS: True
+
+
+
+# At the top with other imports
+import logging
+
+# Add this anywhere in settings.py
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+    },
+}
