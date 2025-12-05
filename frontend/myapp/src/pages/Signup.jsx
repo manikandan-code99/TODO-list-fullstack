@@ -34,7 +34,7 @@ return (
 
 <button className="w-full bg-black text-white p-2 rounded mt-3">Create Account</button>
 
-<p className="text-center mt-3 text-sm">Already have an account? <Link className="text-blue-600" to="/login">Login</Link></p>
+<p className="text-center mt-3 text-sm">Already have an account? <Link className="text-blue-600" to="/">Login</Link></p>
 </form>
 </div>
 );
