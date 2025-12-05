@@ -20,7 +20,14 @@ from auth_jwt_app.views import UserView,UserLoginView
 from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
 from feedback.views import FeedbackListCreateView
 
+from django.http import JsonResponse
+
+def home(request):
+    return JsonResponse({"status": "Backend Running Successfully!"})
+
+
 urlpatterns = [
+    path('', home),
     path('admin/', admin.site.urls),
 
     path('signup/', UserView.as_view()),
