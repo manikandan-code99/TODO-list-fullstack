@@ -4,6 +4,8 @@ from .models import User
 from .serializers import *
 from django.contrib.auth import authenticate
 from .serializers import CustomToken_Serializers
+from rest_framework.permissions import AllowAny
+
 
 
 # class UserView(APIView):
@@ -15,6 +17,7 @@ from .serializers import CustomToken_Serializers
 
 #         return Response('new user creater')
 class UserView(APIView):
+    permission_classes = [AllowAny]
     def post(self, request):
         username = request.data.get('username')
         password = request.data.get('password')
@@ -34,6 +37,7 @@ class UserView(APIView):
 
     
 class UserLoginView(APIView):
+    permission_classes = [AllowAny]
     def post(self,request):
         user_data=CustomToken_Serializers(data=request.data)
         print(request.data)
