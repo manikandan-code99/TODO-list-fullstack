@@ -10,8 +10,8 @@ export default function FeedbackList() {
     dispatch(fetchFeedback());
   }, [dispatch]);
 
-  if (loading) return <div className="text-center p-6">Loading...</div>;
-  if (!items.length) return <div className="text-center p-6 text-gray-600">No feedback yet.</div>;
+  if (loading) return <div className="text-center p-6">Loading your Data...</div>;
+  if (!items.length) return <div className="text-center p-6 text-gray-600">No Notes yet.</div>;
 
   return (
     <div className="grid gap-4 grid-cols-1 md:grid-cols-2 mt-6">

@@ -27,7 +27,7 @@ export default function FeedbackForm() {
 
   return (
     <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow max-w-xl mx-auto">
-      <h3 className="text-lg font-semibold mb-3">Add Feedback</h3>
+      <h3 className="text-lg font-semibold mb-3">Add</h3>
 
       <label className="block mb-2">
         <span className="text-sm text-gray-700">Date</span>
@@ -58,7 +58,7 @@ export default function FeedbackForm() {
           value={form.message}
           onChange={(e) => setForm({ ...form, message: e.target.value })}
           className="w-full p-2 border rounded mt-1 h-28"
-          placeholder="Your feedback..."
+          placeholder="Your Notes..."
         />
       </label>
 
@@ -67,7 +67,7 @@ export default function FeedbackForm() {
         className="bg-black text-white px-4 py-2 rounded disabled:opacity-60"
         disabled={saving}
       >
-        {saving ? "Saving..." : "Save Feedback"}
+        {saving ? "Saving..." : "Save Notes"}
       </button>
     </form>
   );
